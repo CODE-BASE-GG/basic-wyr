@@ -1,0 +1,55 @@
+
+.ui-contain {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  flex: column;
+}
+
+.rather-contain {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;
+  background-color: var(--bg-color);
+  align-items: center;
+  justify-content: center;
+  font-family: 'Nunito', Arial, Helvetica, sans-serif;
+}
+.right-side {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-txt);
+  padding: 5rem;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 2rem;
+  background-color: var(--right-color);
+}
+.rather-contain .middle-text {
+  position: absolute;
+  font-size: 2rem;
+  color: var(--color-txt);
+  background-color: var(--bg-color);
+  border: 0px transparent solid;
+  border-radius: 50%;
+  padding: 1rem;
+}
+.left-side {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+  box-sizing: border-box;
+  color: var(--color-txt);
+  text-align: center;
+  font-size: 2rem;
+  background-color: var(--left-color);
+}
