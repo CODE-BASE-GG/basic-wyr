@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
+  fetchtest();
 
   return (
     <>
@@ -22,6 +23,21 @@ function App() {
       </div>
     </>
   )
+}
+
+async function fetchtest() {
+  try {
+    const response = await fetch('https://basic-would-you-rather-api.vercel.app/rathers/get/0');
+
+    if (!response.ok) {
+      throw new Error(`Request status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+  } catch (err) {
+    console.error('Network or parsing error: ', err);
+  }
 }
 
 export default App
