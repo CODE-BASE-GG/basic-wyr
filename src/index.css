@@ -3,6 +3,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #FFFFFF;
 }
 h1,h2,h3,h4,p {
   margin: 0;
@@ -11,8 +12,10 @@ h1,h2,h3,h4,p {
 }
 
 :root {
-  --left-color: #D44040;
-  --right-color: #40D4D4;
+  --left-color: #A22B29;
+  --right-color: #29A1A2;
   --bg-color: #EBEBEB;
   --color-txt: #101010;
+  --color-percentage: #FFFFFF;
+  --font-family: 'Nunito', Arial, Helvetica, sans-serif;
 }
