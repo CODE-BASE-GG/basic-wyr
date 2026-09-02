@@ -5,6 +5,7 @@
   display: flex;
   position: fixed;
   flex: column;
+  user-select: none;
 }
 
 .rather-contain {
