@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getRathers, saveVotedList, calcOperation, getVotedList, addVoteToServer } from './utils';
 import './App.css'
+import './Responsive.css'
 
 // Global variables and types
 let rathers_offset = 0;
