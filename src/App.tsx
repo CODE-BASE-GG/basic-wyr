@@ -7,7 +7,7 @@ import './Responsive.css'
 let rathers_offset = 0;
 let isFirstTime = true;
 let didGetRathers = false;
-let didEnd = false, canVote = true, didRevealPercentage = false;
+let didEnd = false, didRevealPercentage = false;
 let errorMsg = "Error :(";
 let votedRathersList: number[] = [];
 
@@ -48,7 +48,6 @@ function App() {
         setRathers(requestRathers);
         setRatherIndex(0);
         didGetRathers = true;
-        canVote = true;
       }
       else {
         setRight(errorMsg);
