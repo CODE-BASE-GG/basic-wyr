@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
-import { getRathers } from './utils';
+import { getRathers, saveVotedList, calcOperation, getVotedList, addVoteToServer } from './utils';
 import './App.css'
 
 // Global variables and types
 let rathers_offset = 0;
 let isFirstTime = true;
 let didGetRathers = false;
-let didEnd = false, canVote = true;
+let didEnd = false, canVote = true, didRevealPercentage = false;
 let errorMsg = "Error :(";
-let votedRathersList = [];
+let votedRathersList: number[] = [];
 
 interface RatherObject {
   _id: string,
@@ -26,8 +26,8 @@ function App() {
 
   const [right_text, setRight] = useState("Loading..");
   const [left_text, setLeft] = useState("Loading..");
-  const [right_percentage, setRightPercentage] = useState(0);
-  const [left_percentage, setLeftPercentage] = useState(0);
+  const [right_percentage, setRightPercentage] = useState("");
+  const [left_percentage, setLeftPercentage] = useState("");
 
   // element states
   const [coverState, setCoverState] = useState("open");
@@ -76,45 +76,60 @@ function App() {
       setRight(rather_list[view_rather_index].right_rather);
       setLeft(rather_list[view_rather_index].left_rather);
 
-      // Calculate percentage of votes
-      let 
-        l_votes = rather_list[view_rather_index].total_left_votes, 
-        r_votes = rather_list[view_rather_index].total_right_votes;
-      
-      const calcOperation = (input: number) => {
-        if (Number.isNaN(input)) 
-          return 0;
-        else if (Math.trunc(input) - input != 0) 
-        {
-          console.log(input);
-          const format = parseFloat(input.toFixed(2))
-          return format;
-        }
-        else 
-          return Math.trunc(input);
-      };
-
-      let 
-        sum_votes = (l_votes + r_votes),
-        right_side_calc = calcOperation((r_votes / sum_votes) * 100), 
-        left_side_calc = calcOperation((l_votes / sum_votes) * 100);
-
-      setRightPercentage(right_side_calc);
-      setLeftPercentage(left_side_calc);
       if (didGetRathers) setCoverState("open");
     }
   }
   , [rather_list, view_rather_index]);
 
   // Handle the voting event
-  const handleVote = (vote: string) => {
+  const handleVote = (vote_direction: string) => {
     if (didEnd || !didGetRathers) return;
+    let alreadyVoted = false;
 
-    console.log(`You voted ${vote}.`);
+    votedRathersList = getVotedList();
+    let getRather = rather_list[view_rather_index];
+
+    for (let i = 0; i < votedRathersList.length; i++) {
+      if (votedRathersList[i] == getRather.id_index)
+        alreadyVoted = true;
+    }
+
+    if (!alreadyVoted) {
+      votedRathersList.push(getRather.id_index);
+      saveVotedList(votedRathersList);
+      addVoteToServer(getRather.id_index, vote_direction);
+      console.log(`You voted ${vote_direction}.`);
+    }
 
     if (view_rather_index < 4) {
-      setCoverState("close")
-      setRatherIndex(view_rather_index + 1);
+      // Close and process next rather
+      if (didRevealPercentage) {
+        setCoverState("close")
+        setRatherIndex(view_rather_index + 1);
+        setRightPercentage("");
+        setLeftPercentage("");
+        didRevealPercentage = false;
+        return;
+      }
+
+      // Calculate percentage of votes
+      if (didRevealPercentage) return;
+
+      let 
+        l_votes = rather_list[view_rather_index].total_left_votes, 
+        r_votes = rather_list[view_rather_index].total_right_votes;
+
+      if (vote_direction == "left" && !alreadyVoted) l_votes++;
+      if (vote_direction == "right" && !alreadyVoted) r_votes++;
+
+      let 
+        sum_votes = (l_votes + r_votes),
+        right_side_calc = calcOperation((r_votes / sum_votes) * 100), 
+        left_side_calc = calcOperation((l_votes / sum_votes) * 100);
+
+      setRightPercentage(`${right_side_calc}%`);
+      setLeftPercentage(`${left_side_calc}%`);
+      didRevealPercentage = true;
     }
   };
 
@@ -127,14 +142,14 @@ function App() {
         <div className='rather-contain'>
           <div className='left-side side' onClick={() => handleVote("left")}>
             {left_text}
-            <p>{left_percentage}%</p>
+            <p>{left_percentage}</p>
           </div>
 
           <p className='middle-text'>OR</p>
 
           <div className='right-side side' onClick={() => handleVote("right")}>
             {right_text}
-            <p>{right_percentage}%</p>
+            <p>{right_percentage}</p>
           </div>
         </div>
 
