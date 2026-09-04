@@ -91,7 +91,6 @@ export const calcOperation = (input: number) => {
     return 0;
   else if (Math.trunc(input) - input != 0) 
   {
-    console.log(input);
     const format = parseFloat(input.toFixed(2))
     return format;
   }

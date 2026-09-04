@@ -1,3 +1,8 @@
+@media screen and (min-width: 780px) {
+	.side:hover {
+	  opacity: 0.8;
+	}
+}
 
 @media screen and (max-width: 780px) {
 	.rather-contain {

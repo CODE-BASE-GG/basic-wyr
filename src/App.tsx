@@ -5,6 +5,7 @@ import './Responsive.css'
 
 // Global variables and types
 let rathers_offset = 0;
+let ratherOffsetSize = 5;
 let isFirstTime = true;
 let didGetRathers = false;
 let didEnd = false, didRevealPercentage = false;
@@ -55,7 +56,7 @@ function App() {
       }
     }
 
-    if (view_rather_index >= 4) 
+    if (view_rather_index >= ratherOffsetSize) 
     {
       didGetRathers = false;
       rathers_offset++;
@@ -72,7 +73,11 @@ function App() {
   // If the rather_list changes it updates the texts
   useEffect(() => 
   {
-    if (rather_list.length > 0) {
+    let isPopulated = (rather_list.length > 0);
+    let isLessThanMaxOffset = (view_rather_index < ratherOffsetSize);
+
+    if (isPopulated && isLessThanMaxOffset) 
+    {
       setRight(rather_list[view_rather_index].right_rather);
       setLeft(rather_list[view_rather_index].left_rather);
 
@@ -101,7 +106,7 @@ function App() {
       console.log(`You voted ${vote_direction}.`);
     }
 
-    if (view_rather_index < 4) {
+    if (view_rather_index < ratherOffsetSize) {
       // Close and process next rather
       if (didRevealPercentage) {
         setCoverState("close")
