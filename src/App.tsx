@@ -34,6 +34,7 @@ function App() {
   // element states
   const [coverState, setCoverState] = useState("open");
   const [endState, setEndState] = useState("");
+  const [centerText, setCenterText] = useState("");
 
   // Fetch the would you rather datas
   useEffect(() => 
@@ -113,6 +114,7 @@ function App() {
         setRatherIndex(view_rather_index + 1);
         setRightPercentage("");
         setLeftPercentage("");
+        setCenterText("");
         didRevealPercentage = false;
         return;
       }
@@ -134,6 +136,7 @@ function App() {
 
       setRightPercentage(`${right_side_calc}%`);
       setLeftPercentage(`${left_side_calc}%`);
+      setCenterText("Click anywhere again to continue");
       didRevealPercentage = true;
     }
   };
@@ -143,6 +146,10 @@ function App() {
       <div className="ui-contain">
         <div className={`ending-text ${endState}`}>{errorMsg}</div>
         <div className={`next-cover ${coverState}`}></div>
+
+        <div className='centered-ui'>
+          <p className={`next-text ${centerText == "" ? 'close-next' : 'open-next'}`}>{centerText}</p>
+        </div>
 
         <div className='rather-contain'>
           <div className='left-side side' onClick={() => handleVote("left")}>
