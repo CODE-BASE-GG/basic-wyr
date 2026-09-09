@@ -4,4 +4,4 @@ would you rather api project. If you didn't notice,
 yes I will be using react.
 
 ### Goals later:
-* Complete for now,
+* Make the "add rather menu" later.

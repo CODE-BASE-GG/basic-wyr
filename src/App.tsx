@@ -149,6 +149,7 @@ function App() {
 
         <div className='centered-ui'>
           <p className={`next-text ${centerText == "" ? 'close-next' : 'open-next'}`}>{centerText}</p>
+          <button className="add-rather-btn">?</button>
         </div>
 
         <div className='rather-contain'>

@@ -33,6 +33,27 @@
   max-width: 70%;
   transition: 1s ease transform;
 }
+.centered-ui .add-rather-btn {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  top: 2rem;
+  left: 2rem;
+  font-size: 1.2rem;
+  font-family: var(--font-family);
+  padding: 1rem;
+  color: var(--color-percentage);
+  background-color: var(--color-txt);
+  border: solid 2px var(--color-percentage);
+  border-radius: 50%;
+  cursor: help;
+  pointer-events: all;
+}
 .show-next {
   transform: translateY(0%);
 }
