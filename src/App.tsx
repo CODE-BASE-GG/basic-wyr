@@ -3,6 +3,9 @@ import { getRathers, saveVotedList, calcOperation, getVotedList, addVoteToServer
 import './App.css'
 import './Responsive.css'
 
+// Components
+import RatherAddUI from './RatherAddUI.tsx'
+
 // Global variables and types
 let rathers_offset = 0;
 let ratherOffsetSize = 5;
@@ -171,4 +174,5 @@ function App() {
   )
 }
 
+//        <RatherAddUI />
 export default App

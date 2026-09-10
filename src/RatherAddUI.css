@@ -1,0 +1,53 @@
+
+.add-rather-contain {
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+}
+.add-rather-ui {
+	padding: 2rem;
+	background-color: var(--bg-color);
+	margin: auto;
+	position: absolute;
+	pointer-events: all;
+	border: transparent;
+	border-radius: 1rem;
+}
+.legend {
+	margin-top: 2rem;
+	margin-left: 0.4rem;
+	font-size: 0.8rem;
+}
+.add-rather-ui input {
+	padding: 0.5rem;
+	background-color: var(--bg-color);
+	font-family: var(--font-family);
+	font-size: 1rem;
+	width: 40rem;
+	outline: none;
+}
+.left-input {
+	border: solid 2px var(--left-color);
+}
+.right-input {
+	border: solid 2px var(--right-color);
+}
+.add-rather-contain .close {
+	position: absolute;
+	border: 0px transparent;
+	font-size: 2rem;
+	color: #b5b5b5;
+	cursor: pointer;
+	margin-left: 88%;
+	margin-top: -1rem;
+	outline: none;
+}
+.add-rather-contain .close:hover {
+	color: #757575;
+}
