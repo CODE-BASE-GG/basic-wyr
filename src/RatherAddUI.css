@@ -1,3 +1,25 @@
+.add-rather-btn {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.2rem;
+  font-family: var(--font-family);
+  padding: 1rem;
+  color: var(--color-percentage);
+  background-color: var(--color-txt);
+  border: solid 2px var(--color-percentage);
+  border-radius: 50%;
+  cursor: help;
+  pointer-events: all;
+  z-index: 2;
+}
 
 .add-rather-contain {
 	width: 100%;
@@ -8,9 +30,15 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	pointer-events: none;
+	pointer-events: all;
+	background-color: rgb(0, 0, 0, 0.6);
+}
+.add-rather-ui h1 {
+	width: 100%;
+	text-align: center;
 }
 .add-rather-ui {
+	width: 70%;
 	padding: 2rem;
 	background-color: var(--bg-color);
 	margin: auto;
@@ -29,8 +57,9 @@
 	background-color: var(--bg-color);
 	font-family: var(--font-family);
 	font-size: 1rem;
-	width: 40rem;
+	width: 100%;
 	outline: none;
+	box-sizing: border-box;
 }
 .left-input {
 	border: solid 2px var(--left-color);
@@ -44,10 +73,19 @@
 	font-size: 2rem;
 	color: #b5b5b5;
 	cursor: pointer;
-	margin-left: 88%;
-	margin-top: -1rem;
+	padding: 0.5rem;
+	margin-top: -5rem;
 	outline: none;
+	border: 0px solid;
+	border-radius: 10px 10px 0px 0px;
+	background-color: rgb(255, 255, 255);
+	z-index: -1;
 }
 .add-rather-contain .close:hover {
 	color: #757575;
+}
+.add-rather-contain .add {
+	margin-top: 1rem;
+	padding: 0.5rem;
+	font-size: 2rem;
 }

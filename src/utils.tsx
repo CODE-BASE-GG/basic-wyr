@@ -1,11 +1,12 @@
 
 type endCallback = (didEnd: boolean, errorMsg: string) => void;
 const VOTESTORAGE = "VOTE_STORAGE";
+const BACKEND_URL = "https://basic-would-you-rather-api.vercel.app";
 
 // Request rathers to the back-end
 export async function getRathers(rathers_offset: number, endCallback: endCallback) {
   try {
-    const url = `https://basic-would-you-rather-api.vercel.app/rathers/get/${rathers_offset}`;
+    const url = `${BACKEND_URL}/rathers/get/${rathers_offset}`;
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -34,7 +35,25 @@ export async function getRathers(rathers_offset: number, endCallback: endCallbac
       endCallback(true, "This is the end. Follow me in github 'Banacount'.");
     }
 
-    return false
+    return false;
+  }
+}
+
+export async function requestAdd (left: string, right: string) {
+  try {
+    const url = encodeURI(`${BACKEND_URL}/rathers/request_add_rather?left_rather=${left}&right_rather=${right}`);
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      const data = await response.json();
+      if (data.message) {
+        alert (data.message);
+      } else {
+        alert("Can't contact the server.")
+      }
+    }
+  } catch (err) {
+    alert(String(err));
   }
 }
 

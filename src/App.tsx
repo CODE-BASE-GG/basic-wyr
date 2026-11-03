@@ -147,12 +147,12 @@ function App() {
   return (
     <>
       <div className="ui-contain">
+        <RatherAddUI />
         <div className={`ending-text ${endState}`}>{errorMsg}</div>
         <div className={`next-cover ${coverState}`}></div>
 
         <div className='centered-ui'>
           <p className={`next-text ${centerText == "" ? 'close-next' : 'open-next'}`}>{centerText}</p>
-          <button className="add-rather-btn">?</button>
         </div>
 
         <div className='rather-contain'>
