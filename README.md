@@ -4,4 +4,4 @@ would you rather api project. If you didn't notice,
 yes I will be using react.
 
 ### Goals later:
-* Make the "add rather menu" later.
+* Add a much more user friendly alert menu (after adding a new wyr scenario).
