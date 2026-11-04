@@ -39,6 +39,7 @@ export async function getRathers(rathers_offset: number, endCallback: endCallbac
   }
 }
 
+// Request to add a new wyr scenario
 export async function requestAdd (left: string, right: string) {
   try {
     const url = encodeURI(`${BACKEND_URL}/rathers/request_add_rather?left_rather=${left}&right_rather=${right}`);
@@ -46,14 +47,31 @@ export async function requestAdd (left: string, right: string) {
 
     if (!response.ok) {
       const data = await response.json();
-      if (data.message) {
-        alert (data.message);
-      } else {
-        alert("Can't contact the server.")
-      }
+      if (data.message && data.timeRemaining) 
+      {
+        const timeRemaining  = {
+          Minutes: (data.timeRemaining*60),
+          Seconds: ((data.timeRemaining*60)*60) % 60,
+        }
+        timeRemaining.Minutes = Math.trunc(timeRemaining.Minutes);
+        timeRemaining.Seconds = Math.trunc(timeRemaining.Seconds);
+
+        alert(`${data.message}\n${timeRemaining.Minutes}min and ${timeRemaining.Seconds}sec left.`);
+        return;
+      } 
+      if (data.message) 
+        throw new Error(data.message);
+      else 
+        throw new Error("Can't contact the server.");
     }
+
+    const data = await response.json();
+    if (data.message)
+      alert(data.message)
+    return 0;
   } catch (err) {
     alert(String(err));
+    return 1;
   }
 }
 

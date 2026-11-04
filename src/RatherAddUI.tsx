@@ -23,6 +23,12 @@ function ratherAddUI () {
 	const onClose = () => {
 		setClose(!isClose);
 	};
+	const onAdd = async () => {
+		const val = await requestAdd(leftText, rightText);
+		if (val != 0) return;
+		setLeft("");
+		setRight("");
+	};
 
 	return ( 
 	<>
@@ -51,7 +57,7 @@ function ratherAddUI () {
 					onChange={handleRight} 
 				/>
 
-				<button className="add" onClick={() => requestAdd(leftText, rightText)}>Request :3</button>
+				<button className="add" onClick={onAdd}>Request :3</button>
 			</div>
 		</div>
 	</>
